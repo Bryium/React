@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      function App() {
+        const [state, setState] = React.useState({
+          num1: 2,
+          num2: 4,
+          response: "",
+        });
+
+        function updateResponse(event) {
+          setState({
+            ...state,
+            response: event.target.value,
+          });
+        }
+
+        return (
+          <div>
+            <div>
+              {state.num1} + {state.num2}
+            </div>
+            <input onChange={updateResponse} value={state.response} />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.querySelector("#app"));
+    </script>
+  </body>
+</html>
