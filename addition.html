@@ -17,6 +17,7 @@
           num2: 4,
           response: "",
           score: 0,
+          incorrect: false,
         });
 
         function inputKeyPress(event) {
@@ -30,6 +31,7 @@
                 num2: Math.ceil(Math.random() * 10),
                 score: state.score + 1,
                 response: "",
+                incorrect: false,
               });
             } else {
               // User got question wrong
@@ -37,6 +39,7 @@
                 ...state,
                 score: state.score - 1,
                 response: "",
+                incorrect: true,
               });
             }
           }
@@ -51,9 +54,10 @@
 
         return (
           <div>
-            <div class="incorrect">
+            <div className={state.incorrect ? "incorrect" : ""}>
               {state.num1} + {state.num2}
             </div>
+
             <input
               autoFocus={true}
               onKeyPress={inputKeyPress}
