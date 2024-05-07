@@ -14,7 +14,31 @@
           num1: 2,
           num2: 4,
           response: "",
+          score: 0,
         });
+
+        function inputKeyPress(event) {
+          if (event.key === "Enter") {
+            const answer = parseInt(state.response);
+            if (state.num1 + state.num2 === answer) {
+              // User got question right
+              setState({
+                ...state,
+                num1: Math.ceil(Math.random() * 10),
+                num2: Math.ceil(Math.random() * 10),
+                score: state.score + 1,
+                response: "",
+              });
+            } else {
+              // User got question wrong
+              setState({
+                ...state,
+                score: state.score - 1,
+                response: "",
+              });
+            }
+          }
+        }
 
         function updateResponse(event) {
           setState({
@@ -28,7 +52,13 @@
             <div>
               {state.num1} + {state.num2}
             </div>
-            <input onChange={updateResponse} value={state.response} />
+            <input
+              autoFocus={true}
+              onKeyPress={inputKeyPress}
+              onChange={updateResponse}
+              value={state.response}
+            />
+            <div>Score: {state.score}</div>
           </div>
         );
       }
