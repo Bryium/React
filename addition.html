@@ -52,6 +52,9 @@
           });
         }
 
+        if (state.score === 10) {
+          return <div id="winner">You won!</div>;
+        }
         return (
           <div>
             <div className={state.incorrect ? "incorrect" : ""}>
